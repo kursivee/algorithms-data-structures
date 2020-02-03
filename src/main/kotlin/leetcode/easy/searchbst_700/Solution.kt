@@ -15,11 +15,15 @@ import leetcode.easy.mergetwobinarytrees_617.log
  */
 class Solution {
     fun searchBST(root: TreeNode?, `val`: Int): TreeNode? {
-        if(root?.`val` == `val`) {
+        if(root == null) { return null }
+        if(root.`val` == `val`) {
             return root
         }
-        root?.left?.run { searchBST(this, `val`) }?.let { return it }
-        root?.right?.run { searchBST(this, `val`) }?.let { return it }
+        if(`val` < root.`val`) {
+            root.left?.run { searchBST(this, `val`) }?.let { return it }
+        } else {
+            root.right?.run { searchBST(this, `val`) }?.let { return it }
+        }
         return null
     }
 }
