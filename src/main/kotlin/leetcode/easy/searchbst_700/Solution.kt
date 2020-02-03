@@ -16,15 +16,28 @@ import leetcode.easy.mergetwobinarytrees_617.log
 class Solution {
     fun searchBST(root: TreeNode?, `val`: Int): TreeNode? {
         if(root == null) { return null }
-        if(root.`val` == `val`) {
-            return root
+        return when {
+            root.`val` == `val` -> {
+                root
+            }
+            `val` < root.`val` -> {
+                searchBST(root.left, `val`)
+            }
+            else -> {
+                searchBST(root.right, `val`)
+            }
         }
-        if(`val` < root.`val`) {
-            root.left?.run { searchBST(this, `val`) }?.let { return it }
+
+        /**
+         * NOTE: if/else performs faster
+        return if(root.`val` == `val`) {
+        root
+        } else if(`val` < root.`val`) {
+        searchBST(root.left, `val`)
         } else {
-            root.right?.run { searchBST(this, `val`) }?.let { return it }
+        searchBST(root.right, `val`)
         }
-        return null
+         */
     }
 }
 
