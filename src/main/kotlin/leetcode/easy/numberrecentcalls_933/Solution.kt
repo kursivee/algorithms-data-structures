@@ -1,8 +1,11 @@
 package leetcode.easy.numberrecentcalls_933
 
+import java.util.*
+
 // https://leetcode.com/problems/number-of-recent-calls/submissions/
 class RecentCounter {
     private var list = mutableListOf<Int>()
+    private var queue = LinkedList<Int>()
 
     fun ping(t: Int): Int {
         list.add(t)
@@ -14,6 +17,16 @@ class RecentCounter {
         }
         return list.size
     }
+
+    fun pingQ(t: Int): Int =
+        with(queue) {
+            while(isNotEmpty()) {
+                if(t - peek() > 3000) poll()
+                else break
+            }
+            offer(t)
+            size
+        }
 
 }
 
@@ -30,10 +43,10 @@ fun main() {
 //        ping(3001).also { println(it) }
 //        ping(3002).also { println(it) }
 
-        ping(642).also { println(it) }
-        ping(1849).also { println(it) }
-        ping(4921).also { println(it) }
-        ping(5936).also { println(it) }
-        ping(5957).also { println(it) }
+        pingQ(642).also { println(it) }
+        pingQ(1849).also { println(it) }
+        pingQ(4921).also { println(it) }
+        pingQ(5936).also { println(it) }
+        pingQ(5957).also { println(it) }
     }
 }
