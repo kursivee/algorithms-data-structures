@@ -31,6 +31,15 @@ class Solution {
         student.moved = true
         moved = true
     }
+
+    fun heightCheckerSorted(heights: IntArray): Int {
+        val sorted = heights.sorted()
+        var count = 0
+        heights.forEachIndexed { index, i ->
+            if(sorted[index] != i) count++
+        }
+        return count
+    }
 }
 
 fun main() {
@@ -39,6 +48,14 @@ fun main() {
     )).also { println(it == 3) }
 
     Solution().heightChecker(intArrayOf(
+        2,1,2,1,1,2,2,1
+    )).also { println(it == 4) }
+
+    Solution().heightCheckerSorted(intArrayOf(
+        1,1,4,2,1,3
+    )).also { println(it == 3) }
+
+    Solution().heightCheckerSorted(intArrayOf(
         2,1,2,1,1,2,2,1
     )).also { println(it == 4) }
 }
