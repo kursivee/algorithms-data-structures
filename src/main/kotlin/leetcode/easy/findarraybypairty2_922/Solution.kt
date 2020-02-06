@@ -21,10 +21,30 @@ class Solution {
         }
         return arr
     }
+
+    fun sortArray(arr: IntArray): IntArray {
+        val ans = IntArray(arr.size)
+        var evenIndex = 0
+        var oddIndex = 1
+        arr.forEach {
+            if(it % 2 == 0) {
+                ans[evenIndex] = it
+                evenIndex += 2
+            } else {
+                ans[oddIndex] = it
+                oddIndex += 2
+            }
+        }
+        return ans
+    }
 }
 
 fun main() {
     Solution().sortArrayByParityII(intArrayOf(
+        4,2,5,7
+    )).also { println(it.joinToString(", ")) }
+
+    Solution().sortArray(intArrayOf(
         4,2,5,7
     )).also { println(it.joinToString(", ")) }
 }
