@@ -40,6 +40,29 @@ class Solution {
         }
         return min
     }
+
+    fun commonChars2(A: Array<String>): List<String> {
+        val list = mutableListOf<String>()
+        val arr = IntArray(26) { -1 }
+        A.forEach {
+            val currArr = IntArray(26)
+            it.forEach {
+                currArr[it - 'a']++
+            }
+            arr.forEachIndexed { index, i ->
+                if(i == -1) arr[index] = currArr[index]
+                else arr[index] = Math.min(currArr[index], i)
+            }
+        }
+
+        arr.forEachIndexed { index, i ->
+            repeat(i) {
+                list.add((index + 'a'.toInt()).toChar().toString())
+            }
+        }
+        return list
+    }
+
 }
 
 fun main() {
@@ -52,6 +75,18 @@ fun main() {
     )).also { println(it) }
 
     Solution().commonChars(arrayOf(
+        "aaa", "bbb"
+    )).also { println(it) }
+
+    Solution().commonChars2(arrayOf(
+        "bella","label","roller"
+    )).also { println(it) }
+
+    Solution().commonChars2(arrayOf(
+        "cool","lock","cook"
+    )).also { println(it) }
+
+    Solution().commonChars2(arrayOf(
         "aaa", "bbb"
     )).also { println(it) }
 }
