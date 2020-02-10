@@ -14,19 +14,13 @@ import leetcode.easy.convertbinarytoint_1290.ListNode
 // https://leetcode.com/submissions/detail/301837460/
 class Solution {
     fun middleNode(head: ListNode?): ListNode? {
-        if(head?.next == null) return head
+        var midNode = head
         var node = head
-        var count = 1
         while(node?.next != null) {
-            count++
-            node = node.next
+            midNode = midNode?.next
+            node = node.next?.next
         }
-        count = ((count / 2.0) + 1.0).toInt()
-        node = head
-        for(i in 0 until count - 1) {
-            node = node?.next
-        }
-        return node
+        return midNode
     }
 }
 
