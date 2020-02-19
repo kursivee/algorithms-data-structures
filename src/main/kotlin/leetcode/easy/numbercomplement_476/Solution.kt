@@ -15,10 +15,21 @@ class Solution {
         }
         return s.reversed()
     }
+
+    fun findComplement2(num: Int): Int =
+        Integer.toBinaryString(num).toCharArray().map {
+            if(it == '0') 1 else 0
+        }.joinToString("").run {
+            Integer.parseInt(this, 2)
+        }
 }
 
 fun main() {
     Solution().findComplement(5).also {
+        println(it)
+    }
+
+    Solution().findComplement2(5).also {
         println(it)
     }
 }
