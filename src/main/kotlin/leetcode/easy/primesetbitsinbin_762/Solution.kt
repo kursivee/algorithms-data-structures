@@ -10,6 +10,14 @@ class Solution {
         return count
     }
 
+    fun countPrimeSetBits2(L: Int, R: Int): Int {
+        var count = 0
+        for(i in L..R) {
+            if(Integer.bitCount(i).isPrime()) count++
+        }
+        return count
+    }
+
     private fun Int.isPrime(): Boolean {
         if(this <= 1) return false
         for(i in 2 until this) {
@@ -34,6 +42,15 @@ fun main() {
     }
 
     Solution().countPrimeSetBits(10,15).also {
+        println(it)
+    }
+
+
+    Solution().countPrimeSetBits2(6,10).also {
+        println(it)
+    }
+
+    Solution().countPrimeSetBits2(10,15).also {
         println(it)
     }
 }
