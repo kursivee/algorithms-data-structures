@@ -1,4 +1,4 @@
-package leetcode.easy.rimesetbisinbin_762
+package leetcode.easy.primesetbitsinbin_762
 
 // https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/
 class Solution {
