@@ -1,24 +1,27 @@
 package leetcode.easy.lettercaseperm_784
 
 // https://leetcode.com/problems/letter-case-permutation/
+/**
+ * OMG This one took me forever. Need more practice with recursion!
+ */
 class Solution {
 
     private val list = mutableListOf<String>()
 
     fun letterCasePermutation(S: String): List<String> {
         perm(S)
-        return list.toSet().toList()
+        return list
     }
 
     private fun perm(s: String, tickIndex: Int = 0) {
-        list.add(s)
-        if(tickIndex + 1 != s.length)
-            perm(s.replaceAt(tickIndex), tickIndex+1)
-        else list.add(s.replaceAt(tickIndex))
-        for(i in tickIndex + 1 until s.length) {
-            val newS = s.replaceAt(i)
-            perm(newS, i)
+        if(s.length == tickIndex) {
+            list.add(s)
+            return
         }
+        perm(s, tickIndex + 1)
+        val newS = s.replaceAt(tickIndex)
+        if(newS != s)
+            perm(newS, tickIndex + 1)
     }
 
     private fun String.replaceAt(index: Int): String {
@@ -34,21 +37,20 @@ class Solution {
 }
 
 fun main() {
-    Solution().letterCasePermutation("abcdefgi").also {
-        println(it.joinToString(", "))
-        println(it.size)
+    Solution().letterCasePermutation("abgi").also {
+        println(it)
     }
 
     Solution().letterCasePermutation("a1b2").also {
-        println(it.joinToString(", "))
+        println(it)
     }
 
     Solution().letterCasePermutation("3z4").also {
-        println(it.joinToString(", "))
+        println(it)
     }
 
     Solution().letterCasePermutation("12345").also {
-        println(it.joinToString(", "))
+        println(it)
     }
     Solution().letterCasePermutation("mQe").also {
         println(it)
