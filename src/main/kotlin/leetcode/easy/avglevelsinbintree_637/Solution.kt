@@ -1,6 +1,7 @@
 package leetcode.easy.avglevelsinbintree_637
 
 import leetcode.easy.mergetwobinarytrees_617.TreeNode
+import java.util.*
 
 /**
  * Example:
@@ -22,9 +23,9 @@ class Solution {
         map[0] = mutableListOf(root.`val`)
         traverse(root, 0)
         return map.map {
-            it.value.fold(0.0) { agg, i ->
-                agg + i
-            } / it.value.size
+            it.value.reduce { acc, i ->
+                acc + i
+            }.toDouble() / it.value.size
         }.toDoubleArray()
     }
 
@@ -36,6 +37,30 @@ class Solution {
         root.right?.let {
             traverse(it, level + 1)
         }
+    }
+
+    fun averageOfLevels2(root: TreeNode?): DoubleArray {
+        if(root == null) return DoubleArray(0)
+        val queue = ArrayDeque<TreeNode>()
+        val list = mutableListOf<Double>()
+        queue.push(root)
+        while(!queue.isEmpty()) {
+            val size = queue.size
+            var sum = 0.0
+            for(i in 0 until size) {
+                val node = queue.poll()
+                sum += node.`val`.toDouble()
+                node.left?.let {
+                    queue.add(it)
+                }
+                node.right?.let {
+                    queue.add(it)
+                }
+            }
+            list.add(sum / size)
+
+        }
+        return list.toDoubleArray()
     }
 }
 
@@ -54,6 +79,34 @@ fun main() {
 
 
     Solution().averageOfLevels(
+        TreeNode(3).apply {
+            left = TreeNode(1).apply {
+                left = TreeNode(0)
+                right = TreeNode(2)
+            }
+            right = TreeNode(5).apply {
+                left = TreeNode(4)
+                right = TreeNode(6)
+            }
+        }
+    ).also {
+        println(it.joinToString(", "))
+    }
+
+    Solution().averageOfLevels2(
+        TreeNode(3).apply {
+            left = TreeNode(9)
+            right = TreeNode(20).apply {
+                left = TreeNode(15)
+                right = TreeNode(7)
+            }
+        }
+    ).also {
+        println(it.joinToString(", "))
+    }
+
+
+    Solution().averageOfLevels2(
         TreeNode(3).apply {
             left = TreeNode(1).apply {
                 left = TreeNode(0)
