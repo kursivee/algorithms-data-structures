@@ -3,8 +3,8 @@ package leetcode.easy.shift2dgrid_1260
 // https://leetcode.com/problems/shift-2d-grid/
 class Solution {
     fun shiftGrid(grid: Array<IntArray>, k: Int): List<List<Int>> {
-        val res = Array(grid.size) {
-            IntArray(grid[0].size)
+        val res = MutableList(grid.size) {
+            MutableList(grid[0].size) { -1 }
         }
         for(i in grid.indices) {
             for(j in grid[0].indices) {
@@ -18,9 +18,7 @@ class Solution {
                 res[y][x] = grid[i][j]
             }
         }
-        return res.map {
-            it.toList()
-        }
+        return res
     }
 }
 
