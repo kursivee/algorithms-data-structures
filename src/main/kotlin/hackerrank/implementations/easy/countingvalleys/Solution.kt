@@ -1,4 +1,4 @@
-package hackerrank.easy.implementations.countingvalleys
+package hackerrank.implementations.easy.countingvalleys
 
 import java.util.*
 
