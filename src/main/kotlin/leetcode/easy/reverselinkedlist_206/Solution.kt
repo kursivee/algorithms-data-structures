@@ -30,14 +30,15 @@ class Solution {
         return node
     }
 
-    private var node: ListNode? = null
-
     fun reverseList(head: ListNode?): ListNode? {
-        if(head == null) return null
-        reverse(head, ListNode(head.`val`))
+        if(head?.next == null) return head
+        val node = reverseList(head.next)
+        head.next!!.next = head
+        head.next = null
         return node
     }
 
+    private var node: ListNode? = null
     private fun reverse(head: ListNode, n: ListNode): ListNode {
         var curr = n
         if(head.next != null) {
