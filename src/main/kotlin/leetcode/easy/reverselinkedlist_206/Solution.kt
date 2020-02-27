@@ -1,0 +1,54 @@
+package leetcode.easy.reverselinkedlist_206
+
+import java.util.*
+
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+// https://leetcode.com/problems/reverse-linked-list/
+class Solution {
+    fun reverseList(head: ListNode?): ListNode? {
+        if(head == null) return null
+        val stack = ArrayDeque<Int>()
+        var curr = head
+        while(curr != null) {
+            stack.push(curr.`val`)
+            curr = curr.next
+        }
+        val node = ListNode(stack.pop())
+        curr = node
+        while(stack.isNotEmpty()) {
+            curr!!.next = ListNode(stack.pop())
+            curr = curr.next
+        }
+        return node
+    }
+}
+
+class ListNode(var `val`: Int) {
+    var next: ListNode? = null
+}
+
+fun main() {
+    Solution().reverseList(ListNode(1).apply {
+        next = ListNode(2).apply {
+            next = ListNode(3).apply {
+                next = ListNode(4).apply {
+                    next = ListNode(5)
+                }
+            }
+        }
+    }).also {
+        var node = it
+        while(node != null) {
+            print("${node.`val`} ")
+            node = node.next
+        }
+    }
+}
