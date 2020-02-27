@@ -13,7 +13,7 @@ import java.util.*
  */
 // https://leetcode.com/problems/reverse-linked-list/
 class Solution {
-    fun reverseList(head: ListNode?): ListNode? {
+    fun reverseList2(head: ListNode?): ListNode? {
         if(head == null) return null
         val stack = ArrayDeque<Int>()
         var curr = head
@@ -28,6 +28,26 @@ class Solution {
             curr = curr.next
         }
         return node
+    }
+
+    private var node: ListNode? = null
+
+    fun reverseList(head: ListNode?): ListNode? {
+        if(head == null) return null
+        reverse(head, ListNode(head.`val`))
+        return node
+    }
+
+    private fun reverse(head: ListNode, n: ListNode): ListNode {
+        var curr = n
+        if(head.next != null) {
+            curr = reverse(head.next!!, n)
+            curr.next = ListNode(head.`val`)
+        } else {
+            curr.`val` = head.`val`
+            node = curr
+        }
+        return curr.next ?: curr
     }
 }
 
