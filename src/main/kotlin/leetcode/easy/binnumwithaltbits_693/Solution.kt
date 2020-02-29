@@ -3,7 +3,9 @@ package leetcode.easy.binnumwithaltbits_693
 // https://leetcode.com/problems/binary-number-with-alternating-bits/
 class Solution {
     fun hasAlternatingBits(n: Int): Boolean {
-        return n.toString(2).findAnyOf(listOf("11", "00")) == null
+        return with(n.xor(n.shr(1))) {
+            and(this+1) == 0
+        }
     }
 }
 
