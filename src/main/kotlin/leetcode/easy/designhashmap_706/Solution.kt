@@ -1,9 +1,9 @@
 package leetcode.easy.designhashmap_706
 
-class MyHashMap() {
+class MyHashMap2() {
 
     /** Initialize your data structure here. */
-    class Item(val key: Int, val value: Int) {
+    data class Item(val key: Int, val value: Int) {
         override fun equals(other: Any?): Boolean {
             if(other is Item) {
                 return this.key == other.key
@@ -38,6 +38,22 @@ class MyHashMap() {
 
 }
 
+class MyHashMap() {
+    private val arr = IntArray(1000000) { -1 }
+
+    fun put(key: Int, value: Int) {
+        arr[key] = value
+    }
+
+    fun get(key: Int): Int {
+        return arr[key]
+    }
+
+    fun remove(key: Int) {
+        arr[key] = -1
+    }
+}
+
 /**
  * Your MyHashMap object will be instantiated and called as such:
  * var obj = MyHashMap()
@@ -50,8 +66,8 @@ fun main() {
     val key = 0
     val value = 1
     val obj = MyHashMap()
+    obj.put(key, 1)
     obj.put(key, value)
-    obj.put(key, 2)
     val param = obj.get(key)
     println(param == value)
     obj.remove(key)
