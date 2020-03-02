@@ -52,7 +52,7 @@ class Solution {
     }
 }
 
-class ListNode(var `val`: Int) {
+class ListNode(var `val`: Int?) {
     var next: ListNode? = null
 }
 
