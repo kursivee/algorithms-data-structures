@@ -4,10 +4,19 @@ package leetcode.easy.convertinttosum2int_1317
 class Solution {
     fun getNoZeroIntegers(n: Int): IntArray {
         var i = 1
-        while((n - i).toString().contains("0") || i.toString().contains("0")) {
+        while((n - i).hasZero() || i.hasZero()) {
             i++
         }
         return intArrayOf(i, n - i)
+    }
+
+    private fun Int.hasZero(): Boolean {
+        var num = this
+        while(num != 0) {
+            if(num % 10 == 0) return true
+            num /= 10
+        }
+        return false
     }
 }
 
