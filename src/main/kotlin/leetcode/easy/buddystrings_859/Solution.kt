@@ -2,39 +2,34 @@ package leetcode.easy.buddystrings_859
 
 // https://leetcode.com/problems/buddy-strings/
 class Solution {
+
+    val a = IntArray(26)
+    val b = IntArray(26)
+    var hasDupe = false
+
     fun buddyStrings(A: String, B: String): Boolean {
         if(A.length != B.length) return false
-        if(!A.hasAll(B)) return false
-        val diff = A.diff(B)
+
+        var diff = 0
+        for(i in A.indices) {
+            if(A[i] != B[i]) diff++
+            val x = A[i] - 'a'
+            val y = B[i] - 'a'
+            a[x]++
+            b[y]++
+            hasDupe = a[x] > 1
+        }
+        for(i in a.indices) {
+            if(a[i] != b[i]) return false
+        }
+
         if(diff == 0) {
-            val a = A.toSet().joinToString("")
-            if(a.length != A.length) {
-                return true
-            }
-            return false
+            return hasDupe
         }
         if(diff == 2) {
             return true
         }
         return false
-    }
-
-    private fun String.diff(s: String): Int {
-        var diff = 0
-        for(i in this.indices) {
-            if(this[i] != s[i]) diff++
-        }
-        return diff
-    }
-
-    private fun String.hasAll(s: String): Boolean {
-        val a = mutableMapOf<Char, Int>()
-        val b = mutableMapOf<Char, Int>()
-        for(i in this.indices) {
-            a[this[i]] = a.getOrDefault(this[i], 0) + 1
-            b[s[i]] = b.getOrDefault(s[i], 0) + 1
-        }
-        return a.entries.containsAll(b.entries)
     }
 }
 
