@@ -37,6 +37,16 @@ class Solution {
 class TreeNode(var `val`: Int) {
     var left: TreeNode? = null
     var right: TreeNode? = null
+
+    fun log(from: String = "root") {
+        println("$from: ${`val`}")
+        left?.let {
+            log(it, "left")
+        }
+        right?.let {
+            log(it, "right")
+        }
+    }
 }
 
 fun log(node: TreeNode, from: String = "root") {
