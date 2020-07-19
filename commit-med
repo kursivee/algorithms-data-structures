@@ -1,0 +1,2 @@
+#!/bin/bash
+git commit -m "[Leetcode][Algorithms][Medium][$1] $2"
