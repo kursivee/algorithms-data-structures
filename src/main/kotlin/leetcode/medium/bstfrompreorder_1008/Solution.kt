@@ -4,23 +4,20 @@ import leetcode.easy.mergetwobinarytrees_617.TreeNode
 
 class Solution {
     fun bstFromPreorder(preorder: IntArray): TreeNode? {
-        val list = preorder.toMutableList()
-        return construct(list)
+        return construct(preorder)
     }
 
-    fun construct(preorder: MutableList<Int>): TreeNode? {
+    fun construct(preorder: IntArray): TreeNode? {
         if(preorder.isEmpty()) return null
         val node = TreeNode(preorder[0])
         if(preorder.size == 1) return node
-        var rightIndex = preorder.indexOfGreater(node.`val`)
-        val l = preorder.subList(1, rightIndex)
-        val r = preorder.subList(rightIndex, preorder.size)
-        node.left = construct(l)
-        node.right = construct(r)
+        val r = preorder.indexOfGreater(preorder[0])
+        node.left = construct(preorder.copyOfRange(1, r))
+        node.right = construct(preorder.copyOfRange(r, preorder.size))
         return node
     }
 
-    fun List<Int>.indexOfGreater(n: Int): Int {
+    fun IntArray.indexOfGreater(n: Int): Int {
         for(i in indices) {
             if(this[i] > n) {
                 return i
