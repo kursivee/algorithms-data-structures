@@ -3,7 +3,7 @@ package leetcode.medium.maxbintree_654
 import leetcode.easy.mergetwobinarytrees_617.TreeNode
 
 class Solution {
-    fun constructMaximumBinaryTree(nums: IntArray): TreeNode? {
+    fun constructMaximumBinaryTree2(nums: IntArray): TreeNode? {
         if(nums.isEmpty()) return null
         val midIndex = nums.maxIndex()
         val max = nums[midIndex]
@@ -22,6 +22,31 @@ class Solution {
             if(this[i] > max) {
                 max = this[i]
                 index = i
+            }
+        }
+        return index
+    }
+
+    fun constructMaximumBinaryTree(nums: IntArray): TreeNode? {
+        return construct(nums, 0, nums.size)
+    }
+
+    fun construct(nums: IntArray, l: Int, r: Int): TreeNode? {
+        if(l == r) return null
+        val midIndex = nums.maxIndex(l, r)
+        val node = TreeNode(nums[midIndex])
+        node.left = construct(nums, l, midIndex - 1)
+        node.right = construct(nums, midIndex + 1, r)
+        return node
+    }
+
+    fun IntArray.maxIndex(l: Int, r: Int): Int {
+        var largest = this[l]
+        var index = l
+        for(i in l until r) {
+            if(this[i] > largest) {
+                index = i
+                largest = this[i]
             }
         }
         return index
