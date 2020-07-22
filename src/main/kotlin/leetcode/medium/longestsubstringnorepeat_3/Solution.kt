@@ -1,7 +1,7 @@
 package leetcode.medium.longestsubstringnorepeat_3
 
 class Solution {
-    fun lengthOfLongestSubstring(s: String): Int {
+    fun lengthOfLongestSubstring2(s: String): Int {
         if(s.length == 1) return 1
         if(s.isEmpty()) return 0
         var longest = 1
@@ -28,6 +28,21 @@ class Solution {
                 substring.add(s[r++])
             }
             longest = Math.max(substring.count(), longest)
+        }
+        return longest
+    }
+
+    fun lengthOfLongestSubstring(s: String): Int {
+        var l = 0
+        var longest = 0
+        // map of char to index
+        val map = mutableMapOf<Char, Int>()
+        for(r in s.indices) {
+            if(map.containsKey(s[r])) {
+                l = Math.max(map[s[r]]!! + 1, l)
+            }
+            map[s[r]] = r
+            longest = Math.max(longest, r - l + 1)
         }
         return longest
     }
