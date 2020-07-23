@@ -6,6 +6,13 @@ Repo for holding all algorithm and data structure problems from leetcode, hacker
   - Solid tutorials on algorithms. Also pretty energetic which helps staying engaged.
 - https://www.geeksforgeeks.org/
   - Great site with tutorials on pretty much everything
+  
+## Data Structures
+### Trees
+#### Binary Tree
+- Traversal
+  - [Level Order](https://www.youtube.com/watch?v=gcR28Hc2TNQ)
+  - [Pre/Post/In Order](https://www.youtube.com/watch?v=BHB0B1jFKQc)
 
 ## Tidbits
 - [Leetcode uses kotlin JS which is why it's so slow](https://www.reddit.com/r/Kotlin/comments/byd93g/why_is_kotlin_so_much_slower_than_java_on_leetcode/)
