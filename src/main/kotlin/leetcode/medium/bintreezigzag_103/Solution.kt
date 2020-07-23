@@ -1,35 +1,41 @@
 package leetcode.medium.bintreezigzag_103
 
 import leetcode.easy.mergetwobinarytrees_617.TreeNode
+import java.util.*
 
 class Solution {
-    val list: MutableList<MutableList<Int>> = mutableListOf()
-    val map: MutableMap<Int, MutableList<Int>> = mutableMapOf()
+    val queue = LinkedList<TreeNode?>()
 
+    // [1,2,3,4,null,null,5]
     fun zigzagLevelOrder(root: TreeNode?): List<List<Int>> {
-        traverse(root, 0)
-        map.entries.sortedBy { it.key }.forEach {
-            list.add(it.value)
+        if(root == null) return emptyList()
+        val list = mutableListOf<List<Int>>()
+        var levelList = mutableListOf<Int>()
+        queue.add(root)
+        queue.add(null)
+        var depth = 0
+        while(queue.isNotEmpty()) {
+            val node = queue.poll()
+            if(node == null) {
+                depth++
+                list.add(levelList)
+                levelList = mutableListOf()
+                if(queue.isEmpty()) break
+                queue.add(null)
+            } else {
+                val leftToRight = depth % 2 == 1
+
+                node.left?.let { queue.add(it) }
+                node.right?.let { queue.add(it) }
+                if(leftToRight) {
+                    levelList.add(0, node.`val`)
+                } else {
+                    levelList.add(node.`val`)
+                }
+            }
+
         }
         return list
-    }
-
-    fun traverse(root: TreeNode?, depth: Int) {
-        if(root == null) return
-        val rightToLeft = depth % 2 == 0
-        val elements = map.getOrDefault(depth, mutableListOf() )
-        if(rightToLeft) {
-            elements.add(0, root.`val`)
-
-            traverse(root.right, depth + 1)
-            traverse(root.left, depth + 1)
-        } else {
-            elements.add(root.`val`)
-
-            traverse(root.right, depth + 1)
-            traverse(root.left, depth + 1)
-        }
-        map[depth] = elements
     }
 }
 
