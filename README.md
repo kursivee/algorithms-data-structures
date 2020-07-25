@@ -6,6 +6,8 @@ Repo for holding all algorithm and data structure problems from leetcode, hacker
   - Solid tutorials on algorithms. Also pretty energetic which helps staying engaged.
 - https://www.geeksforgeeks.org/
   - Great site with tutorials on pretty much everything
+- https://www.youtube.com/channel/UCMn3_305DqmTylxJPFA8OJA
+  - Does all the daily challenges
   
 ## Data Structures
 ### Graphs
