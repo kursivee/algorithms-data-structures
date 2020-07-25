@@ -8,6 +8,9 @@ Repo for holding all algorithm and data structure problems from leetcode, hacker
   - Great site with tutorials on pretty much everything
   
 ## Data Structures
+### Graphs
+- Traversal
+  - [DFS and BFS](https://www.youtube.com/watch?v=TIbUeeksXcI&t=194s)
 ### Trees
 #### Binary Tree
 - Traversal
