@@ -16,23 +16,13 @@ class Solution {
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
         var ans: ListNode? = null
         var curr: ListNode? = null
-        val s1 = ArrayDeque<Int>()
-        val s2 = ArrayDeque<Int>()
         var l = l1
         var r = l2
-        while(l != null) {
-            s1.push(l.`val`)
-            l = l.next
-        }
-        while(r != null) {
-            s2.push(r.`val`)
-            r = r.next
-        }
         var carry = 0
-        while(s1.size > 0 || s2.size > 0) {
-            val v1 = s1.pollLast() ?: 0
-            val v2 = s2.pollLast() ?: 0
-            var sum = v1 + v2 + carry
+        while(l != null || r != null) {
+            val lVal = l?.`val` ?: 0
+            val rVal = r?.`val` ?: 0
+            var sum = lVal + rVal + carry
             if(sum >= 10) {
                 carry = 1
                 sum -= 10
@@ -47,10 +37,11 @@ class Solution {
                 curr?.next = node
                 curr = node
             }
+            l = l?.next
+            r = r?.next
         }
         if(carry == 1) {
-            val node = ListNode(1)
-            curr?.next = node
+            curr?.next = ListNode(1)
         }
         return ans
     }
@@ -61,7 +52,7 @@ class Solution {
 fun main() {
     Solution().addTwoNumbers(ListNode(9).apply {
         next = ListNode(8)
-    }, ListNode(0)).also {
+    }, ListNode(1)).also {
         var node = it
         while(node != null) {
             print(node.`val`)
