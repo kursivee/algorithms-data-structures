@@ -32,7 +32,10 @@ class Solution {
 }
 
 fun main() {
-    Solution().numSplits("aacaba").also {
+//    Solution().numSplits("aacaba").also {
+//        println(it)
+//    }
+    "abc".compareTo("aba").also {
         println(it)
     }
 }

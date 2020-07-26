@@ -20,6 +20,7 @@ class Solution {
                 r = mid
             }
         }
+        nums.forEachIndexed { index, i ->  }
         return nums[l]
     }
 
