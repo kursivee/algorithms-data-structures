@@ -22,6 +22,11 @@ Repo for holding all algorithm and data structure problems from leetcode, hacker
 ## Tidbits
 - [Leetcode uses kotlin JS which is why it's so slow](https://www.reddit.com/r/Kotlin/comments/byd93g/why_is_kotlin_so_much_slower_than_java_on_leetcode/)
 
+## Dynamic Programming (AKA BANE OF MY EXISTENCE)
+I don't have a really good resource for this. There's good examples and intro out there. But trying to apply it in practice confuses the absolute hell out of me.
+- (Hackerrank Intro)[https://www.youtube.com/watch?v=P8Xa2BitN3I]
+- (Coin Change)[https://www.youtube.com/watch?v=1R0_7HqNaW0]
+
 ## Profiles
 Way more active on leetcode since that had a bigger problem set of easys :D also supported kotlin before hackerrank.
 - [Leetcode](https://leetcode.com/kursivee/)
