@@ -10,6 +10,10 @@ Repo for holding all algorithm and data structure problems from leetcode, hacker
   - Does all the daily challenges
 - [BigO Cheat Sheet](https://www.bigocheatsheet.com/)
   - List of common algorithms and their BigO time/space complexity
+- [Competitive programmer's handbook](https://cses.fi/book/book.pdf)
+  - Goes into different algorithms/techniques you should know as a competitive programmer
+- [Junior competitive programmer training sheet](https://docs.google.com/spreadsheets/d/1iJZWP2nS_OB3kCTjq8L6TrJJ4o-5lhxDOyTaocSYc-k/edit#gid=84654839)
+  - Roadmap for becoming a competitve programmer
   
 ## Data Structures
 ### Graphs
