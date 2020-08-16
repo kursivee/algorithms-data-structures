@@ -1,6 +1,7 @@
 package leetcode.medium.deepestleavessum_1302
 
 import leetcode.easy.mergetwobinarytrees_617.TreeNode
+import java.util.*
 
 /**
  * Example:
@@ -33,6 +34,28 @@ class Solution {
         root.right?.let {
             recursive(it, depth + 1)
         }
+    }
+
+    private val queue = ArrayDeque<TreeNode>()
+    fun deepestLeavesSumBFS(root: TreeNode?): Int {
+        if(root == null) return 0
+        var sum = 0
+        queue.add(root)
+        while(queue.isNotEmpty()) {
+            sum = 0
+            val n = queue.size
+            for(i in 0 until n) {
+                val node = queue.poll()
+                sum += node.`val`
+                node.left?.let {
+                    queue.add(it)
+                }
+                node.right?.let {
+                    queue.add(it)
+                }
+            }
+        }
+        return sum
     }
 }
 
