@@ -43,4 +43,17 @@ class Solution {
         }
         return sum
     }
+
+    fun maxSatisfactionOptimized(satisfaction: IntArray): Int {
+        var suffixSum = 0
+        var sum = 0
+        satisfaction.sort()
+        for(i in satisfaction.indices.reversed()) {
+            suffixSum += satisfaction[i]
+            if(suffixSum <= 0) break
+            sum += suffixSum
+        }
+        return sum
+
+    }
 }
