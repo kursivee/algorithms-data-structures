@@ -1,8 +1,24 @@
 package leetcode.easy.verifyingaliendictionary_953
 
 class Solution {
-
+    
     fun isAlienSorted(words: Array<String>, order: String): Boolean {
+        loop@ for(i in 0 until words.size - 1) {
+            val w1 = words[i]
+            val w2 = words[i + 1]
+            for(i in w1.indices) {
+                if(i == w2.length) break
+                val i1 = order.indexOf(w1[i])
+                val i2 = order.indexOf(w2[i])
+                if(i1 > i2) return false
+                if(i1 < i2) continue@loop
+            }
+            if(w1.length > w2.length) return false
+        }
+        return true
+    }
+
+    fun isAlienSorted2(words: Array<String>, order: String): Boolean {
         val comparator = Comparator<String> { a, b ->
             var z = 0
             var bool = false
@@ -29,4 +45,6 @@ class Solution {
         }
         return true
     }
+
+
 }
