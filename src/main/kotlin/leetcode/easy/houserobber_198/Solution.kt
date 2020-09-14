@@ -20,4 +20,14 @@ class Solution {
         }
         return dp.max()!!
     }
+
+    fun inArrayRob(nums: IntArray): Int {
+        if(nums.isEmpty()) return 0
+        for(i in nums.indices) {
+            val x = if(i >= 2) nums[i - 2] + nums[i] else nums[i]
+            val y = if(i >= 1) nums[i - 1] else 0
+            nums[i] = maxOf(x, y)
+        }
+        return nums.last()
+    }
 }
